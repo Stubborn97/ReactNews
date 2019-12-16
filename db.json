@@ -1,0 +1,12 @@
+{
+  "user": {
+    "data": {
+      "isLogined": true,
+      "userInfo": {
+        "nickName": "Stubborn",
+        "userid": 123448557
+      }
+    },
+    "status": 200
+  }
+}
