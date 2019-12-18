@@ -56,8 +56,7 @@ class PCHeader extends Component {
         return message.error('两次密码不一致!')
       }
     }else {
-      if(this.state.action === 'login') {
-        if(!formData.r_userName || !formData.r_password) {
+      if(!formData.r_userName || !formData.r_password) {
         return message.error('内容不得为空')
       }
     }
@@ -80,6 +79,11 @@ class PCHeader extends Component {
       message.success('登录成功!')
     }
    }
+  //  面板切换
+  handleTabsChange = (activeKey) => {
+    // console.log(activeKey)
+    activeKey === '2' && this.setState({ action: 'login' })
+    activeKey === '1' && this.setState({ action: 'enter' })
   }
   render() {
     let {getFieldDecorator} = this.props.form
@@ -121,21 +125,7 @@ class PCHeader extends Component {
               {userShow}
             </Menu>
             <Modal title="用户中心" visible={this.state.modalVis} onCancel={()=>this.setModalVisible(false)} onOk={()=>this.setModalVisible(false)}>
-              <Tabs type="card">
-                <TabPane tab="登录" key="1">
-                  <Form layout="horizontal" onSubmit={this.handleSubmit}>
-                    <FormItem label="账户">
-                      {getFieldDecorator('r_userName')(<Input placeholder="请输入账户" />)}
-                    </FormItem>
-                    <FormItem label="密码">
-                      {getFieldDecorator('r_password')(<Input type="password" placeholder="请输入密码" />)}
-                    </FormItem>
-                    {/* <FormItem label="确认密码">
-                      {getFieldDecorator('r_confirmPassword')(<Input type="password" placeholder="请输入再次输入密码" />)}
-                    </FormItem> */}
-                    <Button type="primary" htmlType="submit">登录</Button>
-                  </Form>
-                </TabPane>
+              <Tabs type="card" onChange={this.handleTabsChange}>
                 <TabPane tab="注册" key="2">
                   <Form layout="horizontal" onSubmit={this.handleSubmit}>
                     <FormItem label="账户">
@@ -148,6 +138,20 @@ class PCHeader extends Component {
                       {getFieldDecorator('r_confirmPassword')(<Input type="password" placeholder="请输入再次输入密码" />)}
                     </FormItem>
                     <Button type="primary" htmlType="submit">注册</Button>
+                  </Form>
+                </TabPane>
+                <TabPane tab="登录" key="1">
+                  <Form layout="horizontal" onSubmit={this.handleSubmit}>
+                    <FormItem label="账户">
+                      {getFieldDecorator('r_userName')(<Input placeholder="请输入账户" />)}
+                    </FormItem>
+                    <FormItem label="密码">
+                      {getFieldDecorator('r_password')(<Input type="password" placeholder="请输入密码" />)}
+                    </FormItem>
+                    {/* <FormItem label="确认密码">
+                      {getFieldDecorator('r_confirmPassword')(<Input type="password" placeholder="请输入再次输入密码" />)}
+                    </FormItem> */}
+                    <Button type="primary" htmlType="submit">登录</Button>
                   </Form>
                 </TabPane>
               </Tabs>
