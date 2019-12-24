@@ -20,3 +20,45 @@
 :global .register {
   float: right !important;
 }
+
+:global .ant-menu-horizontal > .ant-menu-item > a, :global .ant-menu-horizontal > .ant-menu-submenu > a {
+  display: inline-block !important;
+}
+
+:global .leftContainer {
+  width: 400px;
+  float: left;
+}
+
+:global .container {
+  margin-top: 10px;
+}
+
+:global .custom {
+  float: left;
+  width: 122px;
+  padding-top: 10px;
+}
+
+:global .custom-title {
+  text-indent: 1em;
+  font-size: 16px;
+  /* padding-bottom: 10px; */
+  border-bottom: 1px solid #888;
+}
+
+:global .newsList {
+  padding: 15px;
+  border: 1px solid #ccc;
+}
+
+:global .clearfix:after,:global .clearfix:before{
+  content: "";
+  display: table;
+}
+:global .clearfix:after{
+  clear: both;
+}
+:global .clearfix{
+  *zoom: 1;
+}

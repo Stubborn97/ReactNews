@@ -31,6 +31,17 @@ class PCHeader extends Component {
       ]
     }
   }
+  UNSAFE_componentWillMount() {
+    if(localStorage.getItem('userId') !== '') {
+      this.setState({
+        hasLogined: true
+      });
+      this.setState({
+        userNickName: localStorage.getItem('userName'),
+        userid: localStorage.getItem('userId')
+      })
+    }
+  }
   handleMenuClick = ({ item, key }) => {
     key==='register' && this.setModalVisible(true)
     // console.log(item, key)
@@ -76,8 +87,17 @@ class PCHeader extends Component {
       })
       this.setModalVisible(false)
       this.setState({menuCurrent: 'top'})
+      localStorage.setItem('userName', data.userInfo.nickName)
+      localStorage.setItem('userId', data.userInfo.userid)
       message.success('登录成功!')
     }
+   }
+   logout = () => {
+    localStorage.setItem('userName', '')
+    localStorage.setItem('userId', '')
+    this.setState({
+      hasLogined: false
+    })
    }
   //  面板切换
   handleTabsChange = (activeKey) => {
@@ -94,7 +114,7 @@ class PCHeader extends Component {
       {/* <Link target="_blank"> */}
         <Button type="dashed" htmlType="button">个人中心</Button>
       {/* </Link> */}
-      <Button type="ghost" htmlType="button">退出</Button>
+      <Button type="ghost" htmlType="button" onClick={this.logout}>退出</Button>
     </Menu.Item>
     :
     <Menu.Item key="register" className="register">
