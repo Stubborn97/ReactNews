@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card } from 'antd'
+// import { Card } from 'antd'
 // import { BrowserRouter as Router,Route,Link} from 'react-router-dom'
 import request from '../api/axios'
 
@@ -14,7 +14,7 @@ export default class PCNewsBlock extends Component {
     this.getNews()
   }
   getNews = async () => {
-    const { data } = await request({ method: 'get', url: '/news' })
+    const { data } = await request({ method: 'get', url: '/newlist' })
     // console.log(data.data)
     data.status === 200 && this.setState({ news: data.data.data })
   }
